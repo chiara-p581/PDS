@@ -1,57 +1,43 @@
 
-import java.io.*;
 import java.util.*;
 
-/**
- * 
- */
 public class MenuDigital {
 
-    /**
-     * Default constructor
-     */
-    public MenuDigital() {
+    private List<Producto> productos;
+
+    public MenuDigital(List<Producto> productos) {
+        this.productos = productos;
     }
 
-    /**
-     * 
-     */
-    private List<Productos> productos;
-
-
-
-
-
-
-    /**
-     * @param producto
-     */
     public void agregarProducto(Producto producto) {
-        // TODO implement here
+        productos.add(producto);
     }
 
-    /**
-     * @param producto
-     */
     public void eliminarProducto(Producto producto) {
-        // TODO implement here
+        for (int i = 0; i < productos.size(); i++) {
+            if (productos.get(i).equals(producto)) {
+                productos.remove(i);
+            }
+        }
     }
 
-    /**
-     * @return
-     */
-    public List<Producto> obtenerTodosLosProductos() {
-        // TODO implement here
-        return null;
+    public List<String> obtenerTodosLosProductos() {
+        List<String> resultado = new ArrayList<>();
+        for (Producto p : productos) {
+            resultado.add(p.toString());
+        }
+        return resultado;
     }
 
-    /**
-     * @param tipo 
-     * @return
-     */
+
     public List<Producto> obtenerPorCategoria(Class<?> tipo) {
-        // TODO implement here
-        return null;
+        List<Producto> resultado = new ArrayList<>();
+        for (Producto p : productos) {
+            if (tipo.isInstance(p)) {
+                resultado.add(p);
+            }
+        }
+        return resultado;
     }
 
 }

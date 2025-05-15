@@ -42,4 +42,11 @@ public abstract class PlatosPrincipales extends Producto {
     public String getDescripcion() {
         return descripcion;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "Tamaño de Porción" +
+                tamañoPorcion;
+    }
 }

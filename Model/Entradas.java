@@ -14,4 +14,11 @@ public class Entradas extends Producto {
         return esCaliente;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() +
+                "Entradas{" +
+                "esCaliente=" + esCaliente +
+                '}';
+    }
 }

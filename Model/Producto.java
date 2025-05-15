@@ -36,4 +36,15 @@ public abstract class Producto {
     public List<String> getIngredientesAlergenos() {
         return ingredientesAlergenos;
     }
+
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "nombre='" + nombre + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", precio=" + precio +
+                ", ingredientes=" + ingredientes +
+                ", ingredientesAlergenos=" + ingredientesAlergenos +
+                '}';
+    }
 }

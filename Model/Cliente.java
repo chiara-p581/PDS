@@ -1,8 +1,3 @@
-
-import java.io.*;
-import java.util.*;
-
-
 public class Cliente {
 
     private Integer id;
@@ -17,6 +12,14 @@ public class Cliente {
         this.medioPreferido = medioPreferido;
         this.cupon = cupon;
         this.medioPago = medioPago;
+    }
+
+    public Cliente(Integer id, String nombre, MedioNotificador medioPreferido, MedioPago medioPago) {
+        this.id = id;
+        this.nombre = nombre;
+        this.medioPreferido = medioPreferido;
+        this.medioPago = medioPago;
+        this.cupon = null;
     }
 
     public Integer getId() {

@@ -39,4 +39,12 @@ public class Bebidas extends Producto {
     public List<String> getIngredientesAlergenos() {
         return super.getIngredientesAlergenos();
     }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "Bebidas{" +
+                "alcoholica=" + alcoholica +
+                '}';
+    }
 }

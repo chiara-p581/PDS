@@ -48,4 +48,13 @@ public abstract class Postres extends Producto {
     public String getDescripcion() {
         return descripcion;
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+
+                "Postres{" +
+                "esFrio=" + esFrio +
+                ", contieneAzucar=" + contieneAzucar +
+                '}';
+    }
 }
