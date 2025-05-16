@@ -10,6 +10,7 @@ public class Pedido {
     private List<Producto> productos;
     private Estado estado;
     private DetallePedido detalle;
+    private Factura factura;
 
     public Pedido(Integer id, Cliente cliente, Mesero mesero, List<Producto> productos, Estado estado, DetallePedido detalle) {
         this.id = id;
@@ -44,6 +45,10 @@ public class Pedido {
         return detalle;
     }
 
+    public Factura getFactura() {
+        return factura;
+    }
+
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
@@ -54,13 +59,17 @@ public class Pedido {
         }
     }
 
-    public void generarDetalleYPagar() {
+    public void generarDetalle() {
         double total = 0;
         for (int i = 0; i < productos.size(); i++) {
             total += productos.get(i).getPrecio();
         }
-        detalle = new DetallePedido(total, cliente.getCupon());
+        detalle = new DetallePedido(total, cliente.getCupon(), cliente);
+    }
 
+    public void generarFactura(){
+        Factura factura = new Factura(detalle.getTotal(), this);
+        this.factura = factura;
     }
 
 }

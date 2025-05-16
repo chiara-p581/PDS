@@ -4,21 +4,17 @@ import java.util.*;
 
 public class TarjetaCredito extends Tarjeta {
 
-    public TarjetaCredito() {
-    }
-
     private String numero;
     private String titular;
-    public void procesarPago(double monto) {
-        // TODO implement here
+    private double girarEnDescubierto = 300;
+
+    public boolean procesarPago(double monto, double saldoEnCuenta) {
+        if(saldoEnCuenta - monto >= 0) {
+            return true;
+        }else{
+            return (saldoEnCuenta - monto + girarEnDescubierto) >= 0;
+        }
     }
 
-    /**
-     * @param total
-     * @return
-     */
-    public Boolean pagar(Float total) {
-        return null;
-    }
 
 }

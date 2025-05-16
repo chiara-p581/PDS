@@ -8,13 +8,8 @@ public class TarjetaDebito extends Tarjeta {
     private String titular;
 
 
-    public void procesarPago(double monto) {
-        // TODO implement here
-    }
-
-
-    public Boolean pagar(Float total) {
-        return null;
+    public boolean procesarPago(double monto, double saldoEnCuenta) {
+        return saldoEnCuenta - monto >= 0;
     }
 
 }

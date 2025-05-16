@@ -2,8 +2,10 @@ public class DetallePedido {
 
     private double total;
     private Cupon cupon;
+    private Cliente cliente;
+    private boolean pago;
 
-    public DetallePedido(double total, Cupon cupon) {
+    public DetallePedido(double total, Cupon cupon, Cliente cliente) {
         this.total = total;
         this.cupon = cupon;
     }
@@ -11,7 +13,6 @@ public class DetallePedido {
     public double getTotal() {
         return total;
     }
-
 
     public Cupon getCupon() {
         return cupon;
@@ -21,6 +22,12 @@ public class DetallePedido {
         if (cupon != null){
             return (100- cupon.getPorcentajeDescuento())/100 * total;
         }
-        return total; //en caso de que no haya un cupon, revisar
+        return total;
     }
+
+    public void pagar(double total){
+        pago = cliente.pagar(getTotalConDescuento());
+    }
+
+
 }

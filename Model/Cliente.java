@@ -5,21 +5,24 @@ public class Cliente {
     private MedioNotificador medioPreferido;
     private Cupon cupon;
     private MedioPago medioPago;
+    private double saldoEnCuenta;
 
-    public Cliente(Integer id, String nombre, MedioNotificador medioPreferido, Cupon cupon, MedioPago medioPago) {
+    public Cliente(Integer id, String nombre, MedioNotificador medioPreferido, Cupon cupon, MedioPago medioPago, double saldoEnCuenta) {
         this.id = id;
         this.nombre = nombre;
         this.medioPreferido = medioPreferido;
         this.cupon = cupon;
         this.medioPago = medioPago;
+        this.saldoEnCuenta = saldoEnCuenta;
     }
 
-    public Cliente(Integer id, String nombre, MedioNotificador medioPreferido, MedioPago medioPago) {
+    public Cliente(Integer id, String nombre, MedioNotificador medioPreferido, MedioPago medioPago, double saldoEnCuenta) {
         this.id = id;
         this.nombre = nombre;
         this.medioPreferido = medioPreferido;
         this.medioPago = medioPago;
         this.cupon = null;
+        this.saldoEnCuenta = saldoEnCuenta;
     }
 
     public Integer getId() {
@@ -50,8 +53,8 @@ public class Cliente {
         return this.medioPago;
     }
 
-    public void pagar(double monto) {
-        // TODO implement here
+    public boolean pagar(double monto) {
+        return medioPago.procesarPago(monto, saldoEnCuenta);
     }
 
     public void hacerPedido() {

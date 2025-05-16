@@ -12,5 +12,6 @@ public class Entregado extends Estado {
     @Override
     public void notificarEstado(Pedido pedido) {
         pedido.getCliente().recibirNotificacion("Su pedido ha sido entregado.");
+        pedido.getFactura().enviarFactura();
     }
 }
