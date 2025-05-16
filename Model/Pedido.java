@@ -12,17 +12,18 @@ public class Pedido {
     private DetallePedido detalle;
     private Factura factura;
 
-    public Pedido(Integer id, Cliente cliente, Mesero mesero, List<Producto> productos, Estado estado, DetallePedido detalle) {
-        this.id = id;
+    public Pedido(Cliente cliente, Mesero mesero, List<Producto> productos) {
         this.cliente = cliente;
         this.mesero = mesero;
         this.productos = productos;
-        this.estado = estado;
-        this.detalle = detalle;
+        this.estado = new EnEspera();
     }
 
     public Integer getId() {
         return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Cliente getCliente() {

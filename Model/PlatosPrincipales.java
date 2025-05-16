@@ -2,7 +2,7 @@
 import java.io.*;
 import java.util.*;
 
-public abstract class PlatosPrincipales extends Producto {
+public class PlatosPrincipales extends Producto {
 
     private String nombre;
     private int tamañoPorcion;

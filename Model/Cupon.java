@@ -37,4 +37,7 @@ public class Cupon {
         return this.porcentajeDescuento;
     }
 
+    public LocalDate getVencimiento() {
+        return vencimiento;
+    }
 }

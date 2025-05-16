@@ -7,12 +7,26 @@ public class PedidoControler {
     private Map<Integer, Pedido> pedidos = new HashMap<>();
 
     // Crea un nuevo pedido y lo agrega al mapa
-    public void crearPedido(Pedido pedido) {
-        if (pedidos.containsKey(pedido.getId())) {
-            System.out.println("Ya existe un pedido con el ID " + pedido.getId());
-            return;
+    public Pedido crearPedido(Cliente cliente, Mesero mesero, List<Producto> productos) {
+        int nuevoId = pedidos.size() + 1;
+        Estado estadoInicial = new EnEspera();
+        Pedido pedido = new Pedido(cliente, mesero, productos);
+        pedido.setId(nuevoId); // Asignar ID al pedido
+        pedidos.put(nuevoId, pedido);
+
+        System.out.println("========================================");
+        System.out.println("✅ ¡Pedido generado exitosamente!");
+        System.out.println("🆔 ID del Pedido: " + nuevoId);
+        System.out.println("👤 Cliente: " + cliente.getNombre() + " (ID: " + cliente.getId() + ")");
+        System.out.println("🧑‍🍳 Mesero: " + mesero.getNombre());
+        System.out.println("🛒 Productos solicitados:");
+        for (Producto producto : productos) {
+            System.out.println("   • " + producto.getNombre() + " - $" + producto.getPrecio());
         }
-        pedidos.put(pedido.getId(), pedido);
+        System.out.println("📦 Estado inicial: " + estadoInicial.getClass().getSimpleName());
+        System.out.println("========================================");
+
+        return pedido;
     }
 
     // Busca un pedido por ID

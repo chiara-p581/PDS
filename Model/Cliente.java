@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Cliente {
 
     private Integer id;
@@ -7,17 +9,7 @@ public class Cliente {
     private MedioPago medioPago;
     private double saldoEnCuenta;
 
-    public Cliente(Integer id, String nombre, MedioNotificador medioPreferido, Cupon cupon, MedioPago medioPago, double saldoEnCuenta) {
-        this.id = id;
-        this.nombre = nombre;
-        this.medioPreferido = medioPreferido;
-        this.cupon = cupon;
-        this.medioPago = medioPago;
-        this.saldoEnCuenta = saldoEnCuenta;
-    }
-
-    public Cliente(Integer id, String nombre, MedioNotificador medioPreferido, MedioPago medioPago, double saldoEnCuenta) {
-        this.id = id;
+    public Cliente(String nombre, MedioNotificador medioPreferido, MedioPago medioPago, double saldoEnCuenta) {
         this.nombre = nombre;
         this.medioPreferido = medioPreferido;
         this.medioPago = medioPago;
@@ -25,8 +17,20 @@ public class Cliente {
         this.saldoEnCuenta = saldoEnCuenta;
     }
 
+    public Cliente(String nombre, MedioNotificador medioPreferido, Cupon cupon, MedioPago medioPago, double saldoEnCuenta) {
+        this.nombre = nombre;
+        this.medioPreferido = medioPreferido;
+        this.cupon = cupon;
+        this.medioPago = medioPago;
+        this.saldoEnCuenta = saldoEnCuenta;
+    }
+
     public Integer getId() {
         return this.id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -57,8 +61,8 @@ public class Cliente {
         return medioPago.procesarPago(monto, saldoEnCuenta);
     }
 
-    public void hacerPedido() {
-        // TODO implement here
+    public void hacerPedido(List<Producto> productos) {
+
     }
 
 }
