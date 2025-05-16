@@ -7,8 +7,11 @@ public class EnEspera extends Estado {
     @Override
     public void avanzarEstado(Pedido pedido) {
         // Avanza al siguiente estado, por ejemplo: "En preparación"
-        pedido.setEstado(new EnPreparacion());
-        System.out.println("El pedido pasó de 'En espera' a 'En preparación'");
+        if (pedido.getDetalle().getPago()){
+            pedido.setEstado(new EnPreparacion());
+            System.out.println("El pedido pasó de 'En espera' a 'En preparación'");
+        }
+        System.out.println("El pago debe estar aprobado para poder avanzar");
     }
 
     @Override

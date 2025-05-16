@@ -25,6 +25,10 @@ public class DetallePedido {
         return total;
     }
 
+    public boolean getPago() {
+        return pago;
+    }
+
     public void pagar(double total){
         pago = cliente.pagar(getTotalConDescuento());
     }
