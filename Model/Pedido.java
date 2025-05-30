@@ -60,6 +60,10 @@ public class Pedido {
         }
     }
 
+    public void notificarCliente(String mensaje){
+        cliente.recibirNotificacion(mensaje);
+    }
+
     public void generarDetalle() {
         double total = 0;
         for (int i = 0; i < productos.size(); i++) {

@@ -16,31 +16,6 @@ public class Bebidas extends Producto {
 
 
     @Override
-    public String getNombre() {
-        return super.getNombre();
-    }
-
-    @Override
-    public String getDescripcion() {
-        return super.getDescripcion();
-    }
-
-    @Override
-    public double getPrecio() {
-        return super.getPrecio();
-    }
-
-    @Override
-    public List<String> getIngredientes() {
-        return super.getIngredientes();
-    }
-
-    @Override
-    public List<String> getIngredientesAlergenos() {
-        return super.getIngredientesAlergenos();
-    }
-
-    @Override
     public String toString() {
         return super.toString() +
                 "Bebidas{" +

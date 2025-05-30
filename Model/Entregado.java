@@ -13,7 +13,7 @@ public class Entregado extends Estado {
     @Override
     public void notificarEstado(Pedido pedido) {
         System.out.println("📢 Notificando al cliente: su pedido ha sido *entregado*...");
-        pedido.getCliente().recibirNotificacion("Su pedido ha sido entregado.");
+        pedido.notificarCliente("Su pedido ha sido entregado.");
         System.out.println("📤 Enviando factura al cliente...");
         pedido.generarFactura();
         pedido.getFactura().enviarFactura();

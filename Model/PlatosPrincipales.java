@@ -16,31 +16,8 @@ public class PlatosPrincipales extends Producto {
         this.tamañoPorcion = tamañoPorcion;
     }
 
-    @Override
-    public String getNombre() {
-        return nombre;
-    }
-
     public int getTamañoPorcion() {
         return tamañoPorcion;
-    }
-
-    @Override
-    public double getPrecio() {
-        return precio;
-    }
-
-    public List<String> getIngredientes() {
-        return ingredientes;
-    }
-
-    public List<String> getIngredientesAlergenicos() {
-        return ingredientesAlergenicos;
-    }
-
-    @Override
-    public String getDescripcion() {
-        return descripcion;
     }
 
     @Override

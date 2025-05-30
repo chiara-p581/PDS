@@ -18,11 +18,6 @@ public abstract class Postres extends Producto {
         this.contieneAzucar = contieneAzucar;
     }
 
-    @Override
-    public String getNombre() {
-        return nombre;
-    }
-
     public Boolean getEsFrio() {
         return esFrio;
     }
@@ -31,23 +26,6 @@ public abstract class Postres extends Producto {
         return contieneAzucar;
     }
 
-    @Override
-    public double getPrecio() {
-        return precio;
-    }
-
-    public List<String> getIngredientes() {
-        return ingredientes;
-    }
-
-    public List<String> getIngredientesAlergenicos() {
-        return ingredientesAlergenicos;
-    }
-
-    @Override
-    public String getDescripcion() {
-        return descripcion;
-    }
 
     @Override
     public String toString() {
