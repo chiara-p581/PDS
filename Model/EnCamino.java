@@ -14,6 +14,6 @@ public class EnCamino extends Estado {
     @Override
     public void notificarEstado(Pedido pedido) {
         System.out.println("📢 Notificando al cliente: su pedido está *en camino*...");
-        pedido.getCliente().recibirNotificacion("Su pedido está en camino.");
+        pedido.notificarCliente("Su pedido está en camino.");
     }
 }

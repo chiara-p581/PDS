@@ -12,7 +12,7 @@ public class Main {
         PedidoControler controlerPedido = new PedidoControler();
 
         // Crear cliente
-        Cliente cliente = controlercliente.crearClienteCupon(
+        Cliente cliente = controlercliente.crearCliente(
                 "Martin", app, debito,
                 new Cupon("A123", 10, LocalDate.of(2025, 12, 15), false),
                 1500
@@ -63,7 +63,7 @@ public class Main {
         System.out.println("\n🎊 Pedido completo.");
 
         //Crear pedido 2
-        Cliente cliente2 = controlercliente.crearClienteCupon(
+        Cliente cliente2 = controlercliente.crearCliente(
                 "Ana",
                 email,
                 credito,

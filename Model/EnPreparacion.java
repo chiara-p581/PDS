@@ -14,6 +14,6 @@ public class EnPreparacion extends Estado {
     @Override
     public void notificarEstado(Pedido pedido) {
         System.out.println("📢 Notificando al cliente: su pedido está *en preparación*...");
-        pedido.getCliente().recibirNotificacion("Su pedido está en preparación.");
+        pedido.notificarCliente("Su pedido está en preparación.");
     }
 }

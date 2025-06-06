@@ -28,7 +28,7 @@ public class ClienteControler {
         return cliente;
     }
 
-    public Cliente crearClienteCupon(String nombre, MedioNotificador notificador, MedioPago pago, Cupon cupon, double saldoEnCuenta) {
+    public Cliente crearCliente(String nombre, MedioNotificador notificador, MedioPago pago, Cupon cupon, double saldoEnCuenta) {
         int nuevoId = generarNuevoId();
         Cliente cliente = new Cliente(nombre, notificador, cupon, pago, saldoEnCuenta);
         cliente.setId(nuevoId);
@@ -50,4 +50,6 @@ public class ClienteControler {
     public boolean existeCliente(Integer id) {
         return clientes.containsKey(id);
     }
+
+
 }

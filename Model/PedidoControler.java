@@ -1,9 +1,10 @@
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PedidoControler {
+public class PedidoControler implements Observer {
     private Map<Integer, Pedido> pedidos = new HashMap<>();
 
     // Crea un nuevo pedido y lo agrega al mapa
@@ -54,5 +55,11 @@ public class PedidoControler {
             }
         }
         return resultado;
+    }
+
+    @Override
+    public void actualizarHora(LocalDateTime hora) {
+        System.out.println("Cambio de hora");
+        System.out.println(hora.toString());
     }
 }

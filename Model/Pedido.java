@@ -19,6 +19,13 @@ public class Pedido {
         this.estado = new EnEspera();
     }
 
+    public Pedido(Cliente cliente, List<Producto> productos, Estado estado) {
+        this.cliente = cliente;
+        this.productos = productos;
+        this.estado = estado;
+        this.mesero = null;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -62,6 +69,10 @@ public class Pedido {
 
     public void notificarCliente(String mensaje){
         cliente.recibirNotificacion(mensaje);
+    }
+
+    public void notificarMesero(String mensaje){
+        mesero.recibirNotificacion(mensaje);
     }
 
     public void generarDetalle() {

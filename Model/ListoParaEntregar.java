@@ -13,7 +13,7 @@ public class ListoParaEntregar extends Estado {
     @Override
     public void notificarEstado(Pedido pedido) {
         System.out.println("📢 Notificando al cliente y al mesero que el pedido está *listo para entregar*...");
-        pedido.getCliente().recibirNotificacion("Su pedido está listo para entregar.");
-        pedido.getMesero().recibirNotificacion("El pedido #" + pedido.getId() + " está listo para entregar.");
+        pedido.notificarCliente("Su pedido está listo para entregar.");
+        pedido.notificarMesero("El pedido #" + pedido.getId() + " está listo para entregar.");
     }
 }

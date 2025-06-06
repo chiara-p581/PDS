@@ -21,6 +21,6 @@ public class EnEspera extends Estado {
     @Override
     public void notificarEstado(Pedido pedido) {
         System.out.println("📢 Notificando al cliente que el pedido está *En espera*...");
-        pedido.getCliente().recibirNotificacion("Su pedido está en espera.");
+        pedido.notificarCliente("Su pedido está en espera.");
     }
 }
