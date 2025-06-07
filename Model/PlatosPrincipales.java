@@ -11,8 +11,8 @@ public class PlatosPrincipales extends Producto {
     private List<String> ingredientesAlergenicos;
     private String descripcion;
 
-    public PlatosPrincipales(String nombre, int tamañoPorcion, double precio, List<String> ingredientes, List<String> ingredientesAlergenicos, String descripcion) {
-        super(nombre, descripcion, precio, ingredientes, ingredientesAlergenicos);
+    public PlatosPrincipales(String nombre, int tamañoPorcion, double precio, List<String> ingredientes, List<String> ingredientesAlergenicos, String descripcion, int tiempoPreparacion) {
+        super(nombre, descripcion, precio, ingredientes, ingredientesAlergenicos, tiempoPreparacion);
         this.tamañoPorcion = tamañoPorcion;
     }
 

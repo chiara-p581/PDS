@@ -1,7 +1,5 @@
-public class Email extends MedioNotificador {
-
-    @Override
-    public void notificar(String mensaje, Cliente cliente) {
-        System.out.println("Enviando EMAIL a " + cliente.getNombre() + ": " + mensaje);
+public class Email {
+    public void notificarUsuario(String mensaje, Usuario usuario) {
+        System.out.println("Enviando EMAIL a " + usuario.getEmail() + ": " + mensaje);
     }
 }

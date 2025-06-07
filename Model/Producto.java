@@ -7,14 +7,16 @@ public abstract class Producto {
     private double precio;
     private List<String> ingredientes;
     private List<String> ingredientesAlergenos;
+    private int tiempoPreparacion;
 
     public Producto(String nombre, String descripcion, double precio,
-                    List<String> ingredientes, List<String> ingredientesAlergenos) {
+                    List<String> ingredientes, List<String> ingredientesAlergenos, int tiempoPreparacion) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.ingredientes = ingredientes;
         this.ingredientesAlergenos = ingredientesAlergenos;
+        this.tiempoPreparacion = tiempoPreparacion;
     }
 
     public String getNombre() {
@@ -37,6 +39,10 @@ public abstract class Producto {
         return ingredientesAlergenos;
     }
 
+    public int getTiempoPreparacion() {
+        return tiempoPreparacion;
+    }
+
     @Override
     public String toString() {
         return "Producto{" +
@@ -45,6 +51,7 @@ public abstract class Producto {
                 ", precio=" + precio +
                 ", ingredientes=" + ingredientes +
                 ", ingredientesAlergenos=" + ingredientesAlergenos +
+                ", tiempoPreparacion=" + tiempoPreparacion +
                 '}';
     }
 }

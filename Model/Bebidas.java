@@ -4,9 +4,10 @@ public class Bebidas extends Producto {
 
     private Boolean alcoholica;
 
-    public Bebidas(String nombre, Boolean alcoholica, double precio,
-                   List<String> ingredientes, List<String> ingredientesAlergenos, String descripcion) {
-        super(nombre, descripcion, precio, ingredientes, ingredientesAlergenos);
+    public Bebidas(String nombre, String descripcion, double precio,
+                   List<String> ingredientes, List<String> ingredientesAlergenos,
+                   boolean alcoholica, int tiempoPreparacion) {
+        super(nombre, descripcion, precio, ingredientes, ingredientesAlergenos, tiempoPreparacion);
         this.alcoholica = alcoholica;
     }
 

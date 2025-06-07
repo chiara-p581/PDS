@@ -16,7 +16,7 @@ public class Factura {
 
     public void enviarFactura() {
         System.out.println("📬 Enviando factura al cliente " + pedido.getCliente().getNombre() + " mediante su medio preferido...");
-        pedido.getCliente().getMedioPreferido().notificar(toString(), pedido.getCliente());
+        pedido.notificarUsuario(toString(), pedido.getCliente());
         System.out.println("✅ Factura enviada con éxito.");
         System.out.println("========================================");
     }

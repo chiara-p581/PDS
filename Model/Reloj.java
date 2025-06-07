@@ -22,5 +22,4 @@ public class Reloj extends Sujeto {
         }).run();
     }
 }
-
  

@@ -2,7 +2,7 @@
 import java.io.*;
 import java.util.*;
 
-public abstract class Postres extends Producto {
+public class Postres extends Producto {
 
     private String nombre;
     private Boolean esFrio;
@@ -12,8 +12,8 @@ public abstract class Postres extends Producto {
     private List<String> ingredientesAlergenicos;
     private String descripcion;
 
-    public Postres(String nombre, Boolean esFrio, Boolean contieneAzucar, Float precio, List<String> ingredientes, List<String> ingredientesAlergenicos, String descripcion) {
-        super(nombre, descripcion, precio, ingredientes, ingredientesAlergenicos);
+    public Postres(String nombre, Boolean esFrio, Boolean contieneAzucar, Float precio, List<String> ingredientes, List<String> ingredientesAlergenicos, String descripcion, int tiempoPreparacion) {
+        super(nombre, descripcion, precio, ingredientes, ingredientesAlergenicos, tiempoPreparacion);
         this.esFrio = esFrio;
         this.contieneAzucar = contieneAzucar;
     }

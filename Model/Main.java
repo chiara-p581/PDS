@@ -4,8 +4,9 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         // Crear medios de notificación
-        MedioNotificador app = new App();
-        MedioNotificador email = new Email();
+        MedioNotificador app = new MedioNotificadorApp();
+        Email email = new Email();
+        MedioNotificador medioNotificador = new AdapterEmail(email);
         MedioPago debito = new TarjetaDebito();
         MedioPago credito = new TarjetaCredito();
         ClienteControler controlercliente = new ClienteControler();
@@ -23,12 +24,14 @@ public class Main {
         Chef chef = new Chef("Gordon");
 
         // Crear productos
-        Producto entrada = new Entradas("Bruschetta", false, 500,
-                Arrays.asList("Pan", "Tomate"),
-                Arrays.asList("Gluten"), "Tostada con verduras");
-        Producto bebida = new Bebidas("Coca-Cola", false, 200,
-                Arrays.asList("Azúcar", "Cafeína"),
-                Arrays.asList("Cafeína"), "Bebida azucarada con gas");
+        Producto entrada = new Entradas("Bruschetta", "Tostada con verduras", 500,
+                Arrays.asList("Pan", "Tomate"), Arrays.asList("Gluten"), false,
+                5
+        );
+        Producto bebida = new Bebidas("Coca-Cola", "Bebida azucarada con gas", 200,
+                Arrays.asList("Azúcar", "Cafeína"), Arrays.asList("Cafeína"), false,
+                0
+        );
 
         List<Producto> productos = new ArrayList<>(Arrays.asList(entrada, bebida));;
 
@@ -65,7 +68,7 @@ public class Main {
         //Crear pedido 2
         Cliente cliente2 = controlercliente.crearCliente(
                 "Ana",
-                email,
+                medioNotificador,
                 credito,
                 new Cupon("A524", 20, LocalDate.of(2025, 3, 15), false),
                 50
