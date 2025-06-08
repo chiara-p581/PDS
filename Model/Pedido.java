@@ -6,7 +6,6 @@ public abstract class Pedido {
 
     private Integer id;
     private Cliente cliente;
-    private Mesero mesero;
     private List<Producto> productos;
     private Estado estado;
     private DetallePedido detalle;
@@ -15,18 +14,10 @@ public abstract class Pedido {
     private int espera;
     private MedioNotificador medioNotificador;
 
-    public Pedido(Cliente cliente, Mesero mesero, List<Producto> productos) {
-        this.cliente = cliente;
-        this.mesero = mesero;
-        this.productos = productos;
-        this.estado = new EnEspera();
-    }
-
-    public Pedido(Cliente cliente, List<Producto> productos, Estado estado) {
+    protected Pedido(Cliente cliente, List<Producto> productos, Estado estado) {
         this.cliente = cliente;
         this.productos = productos;
         this.estado = estado;
-        this.mesero = null;
     }
 
     public Integer getId() {
@@ -39,10 +30,6 @@ public abstract class Pedido {
 
     public Cliente getCliente() {
         return cliente;
-    }
-
-    public Mesero getMesero() {
-        return mesero;
     }
 
     public List<Producto> getProductos() {
@@ -81,10 +68,8 @@ public abstract class Pedido {
         }
     }
 
-    public abstract void notificarUsuario(String mensaje, Usuario usuario);
-
-    public void notificarMesero(String mensaje){
-        mesero.recibirNotificacion(mensaje);
+    public void notificarUsuario(String mensaje, Usuario usuario){
+        //ver
     }
 
     public void generarDetalle() {

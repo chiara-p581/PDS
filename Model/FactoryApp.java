@@ -1,7 +1,8 @@
 import java.util.List;
 
-public class FactoryApp extends FactoryPedido {
+public class FactoryApp implements FactoryPedido {
+    @Override
     public Pedido crearPedido(Cliente cliente, Mesero mesero, List<Producto> productos) {
-        return new PedidoApp(cliente, mesero, productos);
+        return new PedidoApp(cliente, productos, mesero);
     }
 }

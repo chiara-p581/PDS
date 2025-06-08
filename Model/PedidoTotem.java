@@ -9,8 +9,7 @@ public class PedidoTotem extends Pedido {
         this.medioNotificador = new MedioNotificadorTotem();
     }
 
-    @Override
     public void notificarUsuario(String mensaje, Usuario usuario) {
-
+        //ver
     }
 }

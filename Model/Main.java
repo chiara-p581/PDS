@@ -3,6 +3,8 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+
+        /*
         // Crear medios de notificación
         MedioNotificador app = new MedioNotificadorApp();
         Email email = new Email();
@@ -86,6 +88,6 @@ public class Main {
         chef.cambiarEstadoPedido(pedido2); // NO debe avanzar por pago no aprobado
         chef.cambiarEstadoPedido(pedido2); // sigue sin avanzar
 
-
+       */
     }
 }

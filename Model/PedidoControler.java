@@ -5,34 +5,45 @@ public class PedidoControler implements Observer {
     private Map<Integer, Pedido> pedidos = new HashMap<>();
     private LocalDateTime hora;
 
+    private int generarNuevoId() {
+        return pedidos.size() + 1;
+    }
+
+    public Pedido crearPedidoDesdeApp(Cliente cliente, Mesero mesero, List<Producto> productos) {
+        return crearPedido(cliente, productos, mesero, new FactoryApp());
+    }
+
+    public Pedido crearPedidoDesdeTotem(Cliente cliente, Mesero mesero, List<Producto> productos) {
+        return crearPedido(cliente, productos, mesero, new FactoryTotem());
+    }
+
     // Crea un nuevo pedido y lo agrega al mapa
-    public Pedido crearPedido(Cliente cliente, Mesero mesero, List<Producto> productos) {
-        int nuevoId = pedidos.size() + 1;
-        Estado estadoInicial = new EnEspera();
-        Pedido pedido = new Pedido(cliente, mesero, productos);
-
-        pedido.setId(nuevoId); // Asignar ID al pedido
-
-        // Calcular y asignar tiempo de espera
-        int tiempoEspera = calcularTiempoEspera();
-        pedido.setEspera(tiempoEspera);
-
+    private Pedido crearPedido(Cliente cliente, List<Producto> productos, Mesero mesero, FactoryPedido factory) {
+        int nuevoId = generarNuevoId();
+        Pedido pedido = factory.crearPedido(cliente, mesero, productos);
+        pedido.setId(nuevoId);
+        int espera = calcularTiempoEspera();
+        pedido.setEspera(espera);
         pedidos.put(nuevoId, pedido);
 
-        System.out.println("========================================");
-        System.out.println("✅ ¡Pedido generado exitosamente!");
-        System.out.println("🆔 ID del Pedido: " + nuevoId);
-        System.out.println("👤 Cliente: " + cliente.getNombre() + " (ID: " + cliente.getId() + ")");
-        System.out.println("🧑‍🍳 Mesero: " + mesero.getNombre());
-        System.out.println("🛒 Productos solicitados:");
-        for (Producto producto : productos) {
-            System.out.println("   • " + producto.getNombre() + " - $" + producto.getPrecio());
-        }
-        System.out.println("📦 Estado inicial: " + estadoInicial.getClass().getSimpleName());
-        System.out.println("⏳ Tiempo estimado de espera: " + tiempoEspera + " unidades");
-        System.out.println("========================================");
+        mostrarResumenPedido(pedido);
+        pedido.notificarUsuario("Tu pedido ha sido registrado exitosamente.", pedido.getCliente());
 
         return pedido;
+    }
+
+    private void mostrarResumenPedido(Pedido pedido) {
+        System.out.println("========================================");
+        System.out.println("✅ ¡Pedido generado exitosamente!");
+        System.out.println("🆔 ID del Pedido: " + pedido.getId());
+        System.out.println("👤 Cliente: " + pedido.getCliente().getNombre());
+        System.out.println("🛒 Productos solicitados:");
+        for (Producto p : pedido.getProductos()) {
+            System.out.println("   • " + p.getNombre() + " - $" + p.getPrecio());
+        }
+        System.out.println("📦 Estado inicial: " + pedido.getEstado().getClass().getSimpleName());
+        System.out.println("⏳ Tiempo estimado de espera: " + pedido.getEspera() + " unidades");
+        System.out.println("========================================");
     }
 
     // Busca un pedido por ID
