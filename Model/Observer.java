@@ -1,5 +1,6 @@
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public interface Observer {
-    void actualizarHora(LocalDateTime hora);
+    void actualizarHora(LocalTime hora);
     }

@@ -1,26 +1,31 @@
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.*;
 
 public class PedidoControler implements Observer {
     private Map<Integer, Pedido> pedidos = new HashMap<>();
-    private LocalDateTime hora;
+    private LocalTime hora;
+
+    public PedidoControler() {
+        actualizarHora(LocalTime.now());
+    }
 
     private int generarNuevoId() {
         return pedidos.size() + 1;
     }
 
-    public Pedido crearPedidoDesdeApp(Cliente cliente, Mesero mesero, List<Producto> productos) {
-        return crearPedido(cliente, productos, mesero, new FactoryApp());
+    public Pedido crearPedidoDesdeApp(Cliente cliente, Mesero mesero, List<Producto> productos, LocalTime horario) {
+        return crearPedido(cliente, productos, mesero, new FactoryApp(), horario);
     }
 
-    public Pedido crearPedidoDesdeTotem(Cliente cliente, Mesero mesero, List<Producto> productos) {
-        return crearPedido(cliente, productos, mesero, new FactoryTotem());
+    public Pedido crearPedidoDesdeTotem(Cliente cliente, Mesero mesero, List<Producto> productos, LocalTime horario) {
+        return crearPedido(cliente, productos, mesero, new FactoryTotem(), horario);
     }
 
     // Crea un nuevo pedido y lo agrega al mapa
-    private Pedido crearPedido(Cliente cliente, List<Producto> productos, Mesero mesero, FactoryPedido factory) {
+    private Pedido crearPedido(Cliente cliente, List<Producto> productos, Mesero mesero, FactoryPedido factory, LocalTime horario) {
         int nuevoId = generarNuevoId();
-        Pedido pedido = factory.crearPedido(cliente, mesero, productos);
+        Pedido pedido = factory.crearPedido(cliente, mesero, productos, horario);
         pedido.setId(nuevoId);
         int espera = calcularTiempoEspera();
         pedido.setEspera(espera);
@@ -42,7 +47,7 @@ public class PedidoControler implements Observer {
             System.out.println("   • " + p.getNombre() + " - $" + p.getPrecio());
         }
         System.out.println("📦 Estado inicial: " + pedido.getEstado().getClass().getSimpleName());
-        System.out.println("⏳ Tiempo estimado de espera: " + pedido.getEspera() + " unidades");
+        System.out.println("⏳ Tiempo estimado de espera: " + pedido.getEspera() + " minutos");
         System.out.println("========================================");
     }
 
@@ -74,21 +79,24 @@ public class PedidoControler implements Observer {
     }
 
     @Override
-    public void actualizarHora(LocalDateTime hora) {
-        System.out.println("Cambio de hora");
-        System.out.println(hora.toString());
+    public void actualizarHora(LocalTime hora) {
         this.hora = hora;
         cambiarPedidosDeEstado();
     }
 
-    public void cambiarPedidosDeEstado(){
+    public boolean cambiarPedidosDeEstado(){
         List<Pedido> pedidosEnEspera = obtenerPedidosPorEstado(new EnEspera());
 
         for (Pedido pedido : pedidosEnEspera) {
             if (pedido.getHorario().isAfter(hora)) {
                 pedido.setEstado(new EnPreparacion());
+                System.out.println("*****************");
+                System.out.println("El pedido programado " + pedido.getId() + "se pasó de estado");
+                System.out.println("*****************");
+                return true;
             }
         }
+        return false;
     }
 
     public int calcularTiempoEspera(){
@@ -104,5 +112,15 @@ public class PedidoControler implements Observer {
         // Por cada 10 pedidos, sumar 20 minutos
         int bloquesDe10 = pedidosTotales / 10;
         return bloquesDe10 * 20;
+    }
+
+    public void cancelarPedido(Pedido pedido) {
+        Estado estadoActual = pedido.getEstado();
+
+        if (estadoActual instanceof Cancelable) {
+            ((Cancelable) estadoActual).cancelarPedido(pedido);
+        } else {
+            System.out.println("❌ No se puede cancelar el pedido en el estado actual: " + estadoActual.getNombre());
+        }
     }
 }

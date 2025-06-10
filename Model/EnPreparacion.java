@@ -1,4 +1,4 @@
-public class EnPreparacion extends Estado {
+public class EnPreparacion extends Estado implements Cancelable {
 
     public EnPreparacion() {
         this.nombre = "En preparación";
@@ -13,10 +13,13 @@ public class EnPreparacion extends Estado {
 
     @Override
     public void notificarEstado(Pedido pedido) {
+        System.out.println("");
         System.out.println("📢 Notificando al cliente: su pedido está en preparación...");
-        pedido.notificarCliente("Su pedido está en preparación.");
+        pedido.notificarUsuario("Su pedido está en preparación.", pedido.getCliente());
+        System.out.println("");
     }
 
+    @Override
     public void cancelarPedido(Pedido pedido) {
         System.out.println("🛑 Cancelando pedido ID: " + pedido.getId() + " en estado 'En preparación'...");
 
@@ -24,12 +27,12 @@ public class EnPreparacion extends Estado {
         pedido.setEstado(new Cancelado());
 
         // Notificar al cliente
-        pedido.notificarCliente("Su pedido fue cancelado mientras estaba en preparación.");
+        pedido.notificarUsuario("Su pedido fue cancelado mientras estaba en preparación.", pedido.getCliente());
 
         // Reembolsar si corresponde
         if (pedido.getDetalle().getPago()) {
             System.out.println("💸 Procesando reembolso...");
-            // Lógica de reembolso si se desea
+            System.out.println("Monto reembolsado: " + pedido.getDetalle().getTotalConDescuento() * 0.75);
         } else {
             System.out.println("ℹ️ No se necesita reembolso ya que el pago no fue realizado.");
         }

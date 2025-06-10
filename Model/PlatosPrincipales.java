@@ -22,8 +22,9 @@ public class PlatosPrincipales extends Producto {
 
     @Override
     public String toString() {
-        return super.toString() +
-                "Tamaño de Porción" +
-                tamañoPorcion;
+        return "=== Plato Principal ===\n" +
+                super.toString() +
+                String.format("Tamaño de porción: %d g\n", tamañoPorcion);
     }
+
 }

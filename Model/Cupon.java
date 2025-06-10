@@ -1,6 +1,5 @@
 
-import java.io.*;
-import java.util.*;
+import java.time.LocalTime;
 import java.time.LocalDate;
 
 public class Cupon {
@@ -10,11 +9,11 @@ public class Cupon {
     private LocalDate vencimiento;
     private Boolean valido;
 
-    public Cupon(String codigo, double porcentajeDescuento, LocalDate vencimiento, Boolean valido) {
+    public Cupon(String codigo, double porcentajeDescuento, LocalDate vencimiento) {
         this.codigo = codigo;
         this.porcentajeDescuento = porcentajeDescuento;
         this.vencimiento = vencimiento;
-        this.valido = valido;
+        this.valido = true;
     }
 
     public boolean esValido() {

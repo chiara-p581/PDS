@@ -45,13 +45,9 @@ public abstract class Producto {
 
     @Override
     public String toString() {
-        return "Producto{" +
-                "nombre='" + nombre + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", precio=" + precio +
-                ", ingredientes=" + ingredientes +
-                ", ingredientesAlergenos=" + ingredientesAlergenos +
-                ", tiempoPreparacion=" + tiempoPreparacion +
-                '}';
+        return String.format(
+                "Nombre: %s\nDescripción: %s\nPrecio: $%.2f\nIngredientes: %s\nAlergénicos: %s\nTiempo de preparación: %d min\n",
+                nombre, descripcion, precio, ingredientes, ingredientesAlergenos, tiempoPreparacion
+        );
     }
 }

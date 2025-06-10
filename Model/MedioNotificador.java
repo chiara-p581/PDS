@@ -1,4 +1,4 @@
-public abstract class MedioNotificador {
+public interface MedioNotificador {
 
-    public abstract void notificarUsuario(String mensaje, Usuario usuario);
+    void notificarUsuario(String mensaje, Usuario usuario);
 }

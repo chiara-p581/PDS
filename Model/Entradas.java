@@ -17,9 +17,9 @@ public class Entradas extends Producto {
 
     @Override
     public String toString() {
-        return super.toString() +
-                "Entradas{" +
-                "esCaliente=" + esCaliente +
-                '}';
+        return "=== Entrada ===\n" +
+                super.toString() +
+                String.format("¿Es caliente?: %s\n", esCaliente ? "Sí" : "No");
     }
+
 }

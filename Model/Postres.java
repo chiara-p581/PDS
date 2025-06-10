@@ -29,10 +29,11 @@ public class Postres extends Producto {
 
     @Override
     public String toString() {
-        return super.toString()+
-                "Postres{" +
-                "esFrio=" + esFrio +
-                ", contieneAzucar=" + contieneAzucar +
-                '}';
+        return "=== Postre ===\n" +
+                super.toString() +
+                String.format("¿Es frío?: %s\n¿Contiene azúcar?: %s\n",
+                        esFrio ? "Sí" : "No",
+                        contieneAzucar ? "Sí" : "No");
     }
+
 }

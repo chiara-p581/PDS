@@ -1,6 +1,6 @@
 public class Administrativo extends Empleado {
-    public Administrativo(String nombre) {
-        super(nombre);
+    public Administrativo(String nombre, String email) {
+        super(nombre, email);
     }
 
     @Override

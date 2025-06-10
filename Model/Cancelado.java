@@ -7,13 +7,13 @@ public class Cancelado extends Estado{
 
     @Override
     public void avanzarEstado(Pedido pedido) {
-        System.out.println("⛔ El pedido está cancelado. No puede avanzar a otro estado.");
+        throw new IllegalStateException("No se puede avanzar un pedido cancelado.");
     }
 
     @Override
     public void notificarEstado(Pedido pedido) {
         System.out.println("📢 Notificando al cliente que el pedido fue Cancelado...");
-        pedido.notificarCliente("Su pedido fue cancelado.");
+        pedido.notificarUsuario("Su pedido fue cancelado.", pedido.getCliente());
     }
 
     public void reeembolsar(Pedido pedido) {

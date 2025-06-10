@@ -6,14 +6,16 @@ public class Cliente extends Usuario {
     private MedioPago medioPago;
     private double saldoEnCuenta;
 
-    public Cliente(String nombre,MedioPago medioPago, double saldoEnCuenta) {
+    public Cliente(String nombre, String email,MedioPago medioPago, double saldoEnCuenta) {
+        super(nombre, email);
         this.nombre = nombre;
         this.medioPago = medioPago;
         this.cupon = null;
         this.saldoEnCuenta = saldoEnCuenta;
     }
 
-    public Cliente(String nombre, Cupon cupon, MedioPago medioPago, double saldoEnCuenta) {
+    public Cliente(String nombre, String email, Cupon cupon, MedioPago medioPago, double saldoEnCuenta) {
+        super(nombre, email);
         this.nombre = nombre;
         this.cupon = cupon;
         this.medioPago = medioPago;

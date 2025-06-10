@@ -1,5 +1,6 @@
 public class Email {
-    public void notificarUsuario(String mensaje, Usuario usuario) {
-        System.out.println("Enviando EMAIL a " + usuario.getEmail() + ": " + mensaje);
+
+    public void notificarUsuario(String mensaje, String  email) {
+        System.out.println("✉️ Enviando email a " + email + ": " + mensaje);
     }
 }

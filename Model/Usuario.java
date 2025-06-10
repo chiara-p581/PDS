@@ -1,8 +1,10 @@
 public class Usuario {
+    private String nombre;
     private String email;
     private int id;
 
-    public Usuario() {
+    public Usuario(String nombre, String email) {
+        this.nombre = "";
         this.id = id;
         this.email = "";
     }
@@ -17,5 +19,9 @@ public class Usuario {
     }
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 }

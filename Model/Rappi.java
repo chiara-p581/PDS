@@ -1,5 +1,6 @@
 public class Rappi {
-    public int tiempoEstimado(){
-        return 15;
+    public int obtenerTiempoEstimado() {
+        // Simula un valor arbitrario
+        return 15 + (int) (Math.random() * 10); // Ej: 15–24 minutos
     }
 }

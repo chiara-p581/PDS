@@ -1,21 +1,22 @@
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Reloj extends Sujeto {
-    private LocalDateTime ultimaFechaActualizacion;
+    private LocalTime ultimaFechaActualizacion;
 
     public Reloj() {
-        this.ultimaFechaActualizacion = LocalDateTime.now();
+        this.ultimaFechaActualizacion = LocalTime.now();
     }
 
     public void verificarHora() {
         new Thread(() -> {
             while (true) {
-                LocalDateTime fechaActual = LocalDateTime.now();
+                LocalTime fechaActual = LocalTime.now();
                 Duration duration = Duration.between(fechaActual, Reloj.this.ultimaFechaActualizacion);
                 long diff = Math.abs(duration.toSeconds());
-                if (diff >= 5) {
-                    Reloj.this.ultimaFechaActualizacion = fechaActual;
+                if (diff >= 1) {
+                    Reloj.this.ultimaFechaActualizacion = LocalTime.from(fechaActual);
                     notificar(fechaActual);
                 }
             }

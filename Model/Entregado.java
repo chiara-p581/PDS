@@ -8,12 +8,13 @@ public class Entregado extends Estado {
     @Override
     public void avanzarEstado(Pedido pedido) {
         System.out.println("✅ El pedido ID: " + pedido.getId() + " ya fue entregado. No puede avanzar más.");
+
     }
 
     @Override
     public void notificarEstado(Pedido pedido) {
         System.out.println("📢 Notificando al cliente: su pedido ha sido *entregado*...");
-        pedido.notificarCliente("Su pedido ha sido entregado.");
+        pedido.notificarUsuario("Su pedido ha sido entregado.", pedido.getCliente());
         System.out.println("📤 Enviando factura al cliente...");
         pedido.generarFactura();
         pedido.getFactura().enviarFactura();

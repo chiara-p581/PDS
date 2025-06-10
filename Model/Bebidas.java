@@ -18,9 +18,9 @@ public class Bebidas extends Producto {
 
     @Override
     public String toString() {
-        return super.toString() +
-                "Bebidas{" +
-                "alcoholica=" + alcoholica +
-                '}';
+        return "=== Bebida ===\n" +
+                super.toString() +
+                String.format("¿Contiene alcohol?: %s\n", alcoholica ? "Sí" : "No");
     }
+
 }

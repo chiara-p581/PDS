@@ -1,5 +1,6 @@
 import java.io.*;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.*;
 
 public abstract class Pedido {
@@ -10,14 +11,15 @@ public abstract class Pedido {
     private Estado estado;
     private DetallePedido detalle;
     private Factura factura;
-    private LocalDateTime horario;
+    private LocalTime horario;
     private int espera;
-    private MedioNotificador medioNotificador;
+    protected MedioNotificador medioNotificador;
 
-    protected Pedido(Cliente cliente, List<Producto> productos, Estado estado) {
+    protected Pedido(Cliente cliente, List<Producto> productos, Estado estado, LocalTime horario) {
         this.cliente = cliente;
         this.productos = productos;
         this.estado = estado;
+        this.horario = horario;
     }
 
     public Integer getId() {
@@ -48,7 +50,9 @@ public abstract class Pedido {
         return factura;
     }
 
-    public LocalDateTime getHorario() {return horario;}
+    public LocalTime getHorario() {
+        return horario;
+    }
 
     public void setEstado(Estado estado) {
         this.estado = estado;
@@ -62,6 +66,10 @@ public abstract class Pedido {
         return espera;
     }
 
+    public void setMedioNotificador(MedioNotificador medioNotificador) {
+        this.medioNotificador = medioNotificador;
+    }
+
     public void notificarCambioEstado() {
         if (estado != null) {
             estado.notificarEstado(this);
@@ -69,7 +77,7 @@ public abstract class Pedido {
     }
 
     public void notificarUsuario(String mensaje, Usuario usuario){
-        //ver
+        medioNotificador.notificarUsuario(mensaje, usuario);
     }
 
     public void generarDetalle() {

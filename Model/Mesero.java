@@ -1,7 +1,7 @@
 public class Mesero extends Empleado {
 
-    public Mesero(String nombre) {
-        super(nombre);
+    public Mesero(String nombre, String email) {
+        super(nombre, email);
     }
 
     @Override

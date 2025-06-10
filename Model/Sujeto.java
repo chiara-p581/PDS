@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,7 @@ public abstract class Sujeto {
         this.observers.add(o);
     }
 
-    public void notificar(LocalDateTime hora) {
+    public void notificar(LocalTime hora) {
         for(Observer o: observers) {
             o.actualizarHora(hora);
         }

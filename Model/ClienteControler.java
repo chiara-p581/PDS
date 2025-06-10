@@ -9,9 +9,9 @@ public class ClienteControler {
         return clientes.size() + 1;
     }
 
-    public Cliente crearCliente(String nombre, MedioNotificador notificador, MedioPago pago, double saldoEnCuenta) {
+    public Cliente crearCliente(String nombre, String email, MedioPago pago, double saldoEnCuenta) {
         int nuevoId = generarNuevoId();
-        Cliente cliente = new Cliente(nombre, notificador, pago, saldoEnCuenta);
+        Cliente cliente = new Cliente(nombre, email, pago, saldoEnCuenta);
         cliente.setId(nuevoId);
         clientes.put(nuevoId, cliente);
 
@@ -19,7 +19,6 @@ public class ClienteControler {
         System.out.println("🆕 ¡Cliente creado exitosamente!");
         System.out.println("🆔 ID: " + nuevoId);
         System.out.println("👤 Nombre: " + nombre);
-        System.out.println("📣 Medio de notificación preferido: " + notificador.getClass().getSimpleName());
         System.out.println("💳 Medio de pago: " + pago.getClass().getSimpleName());
         System.out.println("💰 Saldo inicial: $" + saldoEnCuenta);
         System.out.println("🎟 Cupon: Sin cupón aplicado");
@@ -28,9 +27,9 @@ public class ClienteControler {
         return cliente;
     }
 
-    public Cliente crearCliente(String nombre, MedioNotificador notificador, MedioPago pago, Cupon cupon, double saldoEnCuenta) {
+    public Cliente crearCliente(String nombre, String email, MedioPago pago, Cupon cupon, double saldoEnCuenta) {
         int nuevoId = generarNuevoId();
-        Cliente cliente = new Cliente(nombre, notificador, cupon, pago, saldoEnCuenta);
+        Cliente cliente = new Cliente(nombre, email, cupon, pago, saldoEnCuenta);
         cliente.setId(nuevoId);
         clientes.put(nuevoId, cliente);
 
@@ -38,7 +37,6 @@ public class ClienteControler {
         System.out.println("🆕 ¡Cliente creado exitosamente!");
         System.out.println("🆔 ID: " + nuevoId);
         System.out.println("👤 Nombre: " + nombre);
-        System.out.println("📣 Medio de notificación preferido: " + notificador.getClass().getSimpleName());
         System.out.println("💳 Medio de pago: " + pago.getClass().getSimpleName());
         System.out.println("💰 Saldo inicial: $" + saldoEnCuenta);
         System.out.println("🎟 Cupon: Código " + cupon.getCodigo() + ", Descuento: " + cupon.getPorcentajeDescuento() + "%, Válido hasta: " + cupon.getVencimiento());

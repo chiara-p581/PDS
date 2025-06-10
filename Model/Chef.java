@@ -1,6 +1,6 @@
 public class Chef extends Empleado {
-    public Chef(String nombre) {
-        super(nombre);
+    public Chef(String nombre, String email) {
+        super(nombre, email);
     }
 
     @Override

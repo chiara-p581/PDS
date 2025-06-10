@@ -5,8 +5,8 @@ public class MenuDigital {
 
     private List<Producto> productos;
 
-    public MenuDigital(List<Producto> productos) {
-        this.productos = productos;
+    public MenuDigital() {
+        this.productos = new ArrayList<Producto>();
     }
 
     public void agregarProducto(Producto producto) {
@@ -38,6 +38,24 @@ public class MenuDigital {
             }
         }
         return resultado;
+    }
+
+    @Override
+    public String toString() {
+        if (productos.isEmpty()) {
+            return "📭 El menú está vacío.";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("📋 Menú Digital:\n");
+        sb.append("-----------------------------\n");
+
+        for (Producto producto : productos) {
+            sb.append(producto.toString()).append("\n");
+        }
+
+        sb.append("-----------------------------");
+        return sb.toString();
     }
 
 }

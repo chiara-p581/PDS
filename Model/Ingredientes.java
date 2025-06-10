@@ -3,8 +3,8 @@ import java.io.*;
 import java.util.*;
 
 //ver esto
-public abstract class Ingredientes extends Producto {
-
+public abstract class Ingredientes {
+/*
     private String nombre;
     private Boolean alergenico;
     private String descripcion;
@@ -28,4 +28,7 @@ public abstract class Ingredientes extends Producto {
     public String getDescripcion() {
         return descripcion;
     }
+
+
+ */
 }
