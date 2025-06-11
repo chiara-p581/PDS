@@ -71,7 +71,7 @@ public class PedidoControler implements Observer {
     public List<Pedido> obtenerPedidosPorEstado(Estado estado) {
         List<Pedido> resultado = new ArrayList<>();
         for (Pedido pedido : pedidos.values()) {
-            if (pedido.getEstado().getClass().equals(estado.getClass())) {
+            if (pedido.getEstado().getClass().equals(estado.getClass()) && pedido.isProgramado()) {
                 resultado.add(pedido);
             }
         }

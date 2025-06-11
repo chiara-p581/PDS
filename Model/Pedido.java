@@ -14,12 +14,16 @@ public abstract class Pedido {
     private LocalTime horario;
     private int espera;
     protected MedioNotificador medioNotificador;
+    private boolean programado;
 
     protected Pedido(Cliente cliente, List<Producto> productos, Estado estado, LocalTime horario) {
         this.cliente = cliente;
         this.productos = productos;
         this.estado = estado;
         this.horario = horario;
+        if (horario == null) {
+            this.programado = false;
+        }
     }
 
     public Integer getId() {
@@ -52,6 +56,10 @@ public abstract class Pedido {
 
     public LocalTime getHorario() {
         return horario;
+    }
+
+    public boolean isProgramado() {
+        return programado;
     }
 
     public void setEstado(Estado estado) {

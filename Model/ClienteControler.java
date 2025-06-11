@@ -39,7 +39,9 @@ public class ClienteControler {
         System.out.println("👤 Nombre: " + nombre);
         System.out.println("💳 Medio de pago: " + pago.getClass().getSimpleName());
         System.out.println("💰 Saldo inicial: $" + saldoEnCuenta);
-        System.out.println("🎟 Cupon: Código " + cupon.getCodigo() + ", Descuento: " + cupon.getPorcentajeDescuento() + "%, Válido hasta: " + cupon.getVencimiento());
+        if (cupon !=null) {
+            System.out.println("🎟 Cupon: Código " + cupon.getCodigo() + ", Descuento: " + cupon.getPorcentajeDescuento() + "%, Válido hasta: " + cupon.getVencimiento());
+        }
         System.out.println("========================================");
 
         return cliente;
