@@ -6,8 +6,20 @@ public class PedidoControler implements Observer {
     private Map<Integer, Pedido> pedidos = new HashMap<>();
     private LocalTime hora;
 
-    public PedidoControler() {
+    // Atributo estático privado único
+    private static PedidoControler instancia;
+
+    // Constructor privado
+    private PedidoControler() {
         actualizarHora(LocalTime.now());
+    }
+
+    // Método público de acceso a la instancia Singleton
+    public static PedidoControler getInstancia() {
+        if (instancia == null) {
+            instancia = new PedidoControler();
+        }
+        return instancia;
     }
 
     private int generarNuevoId() {
@@ -22,7 +34,6 @@ public class PedidoControler implements Observer {
         return crearPedido(cliente, productos, mesero, new FactoryTotem(), horario);
     }
 
-    // Crea un nuevo pedido y lo agrega al mapa
     private Pedido crearPedido(Cliente cliente, List<Producto> productos, Mesero mesero, FactoryPedido factory, LocalTime horario) {
         int nuevoId = generarNuevoId();
         Pedido pedido = factory.crearPedido(cliente, mesero, productos, horario);
@@ -51,12 +62,10 @@ public class PedidoControler implements Observer {
         System.out.println("========================================");
     }
 
-    // Busca un pedido por ID
     public Pedido buscarPedido(Integer id) {
         return pedidos.get(id);
     }
 
-    // Retorna todos los pedidos realizados por un cliente dado su ID
     public List<Pedido> obtenerPedidosPorCliente(Integer clienteId) {
         List<Pedido> resultado = new ArrayList<>();
         for (Pedido pedido : this.pedidos.values()) {
@@ -67,7 +76,6 @@ public class PedidoControler implements Observer {
         return resultado;
     }
 
-    // Retorna todos los pedidos que están en un estado específico
     public List<Pedido> obtenerPedidosPorEstado(Estado estado) {
         List<Pedido> resultado = new ArrayList<>();
         for (Pedido pedido : pedidos.values()) {
@@ -91,7 +99,7 @@ public class PedidoControler implements Observer {
             if (pedido.getHorario().isAfter(hora)) {
                 pedido.setEstado(new EnPreparacion());
                 System.out.println("*****************");
-                System.out.println("El pedido programado " + pedido.getId() + "se pasó de estado");
+                System.out.println("El pedido programado " + pedido.getId() + " se pasó de estado");
                 System.out.println("*****************");
                 return true;
             }
@@ -104,12 +112,10 @@ public class PedidoControler implements Observer {
         int pedidosEnPreparacion = obtenerPedidosPorEstado(new EnPreparacion()).size();
         int pedidosTotales = pedidosEnEspera + pedidosEnPreparacion;
 
-        // Si hay menos de 10 pedidos, el tiempo es fijo: 5 minutos
         if (pedidosTotales < 10) {
             return 5;
         }
 
-        // Por cada 10 pedidos, sumar 20 minutos
         int bloquesDe10 = pedidosTotales / 10;
         return bloquesDe10 * 20;
     }

@@ -3,6 +3,21 @@ import java.util.Map;
 
 public class ClienteControler {
 
+    // ---------------- Singleton ----------------
+    private static ClienteControler instancia = null;
+
+    private ClienteControler() {
+        // Constructor privado
+    }
+
+    public static ClienteControler getInstancia() {
+        if (instancia == null) {
+            instancia = new ClienteControler();
+        }
+        return instancia;
+    }
+    // --------------------------------------------
+
     private Map<Integer, Cliente> clientes = new HashMap<>();
 
     private int generarNuevoId() {
@@ -50,6 +65,4 @@ public class ClienteControler {
     public boolean existeCliente(Integer id) {
         return clientes.containsKey(id);
     }
-
-
 }

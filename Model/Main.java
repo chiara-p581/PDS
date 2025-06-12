@@ -13,8 +13,8 @@ public class Main {
         MedioPago efectivo = new Efectivo();
         MedioPago debito = new TarjetaDebito();
         MedioPago credito = new TarjetaCredito();
-        ClienteControler clienteControler = new ClienteControler();
-        PedidoControler controlerPedido = new PedidoControler();
+        ClienteControler clienteControler = ClienteControler.getInstancia();
+        PedidoControler controlerPedido = PedidoControler.getInstancia();
 
 
         // Crear cliente
@@ -32,31 +32,17 @@ public class Main {
         Chef chef1 = new Chef("Remy", "remy@ratatouille.com");
 
 
-        //Crear menu
-
-        MenuDigital menu = new MenuDigital();
-
-
         // Crear productos
 
         Producto entrada = new Entradas("Bruschetta", "Tostada con verduras", 500,
-                Arrays.asList("Pan", "Tomate"), Arrays.asList("Gluten"), false,
-                5
-        );
+                Arrays.asList("Pan", "Tomate"), Arrays.asList("Gluten"), false, 5);
         Producto bebida = new Bebidas("Coca-Cola", "Bebida azucarada con gas", 200,
-                Arrays.asList("Azúcar", "Cafeína"), Arrays.asList("Cafeína"), false,
-                0
-        );
-        Producto plato = new PlatosPrincipales(
-                "Milanesa con papas", 400, 1500,
+                Arrays.asList("Azúcar", "Cafeína"), Arrays.asList("Cafeína"), false, 0);
+        Producto plato = new PlatosPrincipales("Milanesa con papas", 400, 1500,
                 Arrays.asList("Carne", "Pan rallado", "Papa"), Arrays.asList("Gluten"),
-                "Clásica milanesa con papas fritas", 20
-        );
-        Producto postre = new Postres(
-                "Helado", true, true, 350f,
-                Arrays.asList("Leche", "Azúcar"), Arrays.asList("Lactosa"),
-                "Helado artesanal", 0
-        );
+                "Clásica milanesa con papas fritas", 20);
+        Producto postre = new Postres("Helado", true, true, 350f,
+                Arrays.asList("Leche", "Azúcar"), Arrays.asList("Lactosa"), "Helado artesanal", 0);
 
         Producto entrada1 = new Entradas("Provoleta", "Queso derretido con orégano", 600,
                 Arrays.asList("Queso"), Arrays.asList("Lactosa"), false, 5);
@@ -69,17 +55,15 @@ public class Main {
                 Arrays.asList("Queso", "Café", "Bizcocho"), Arrays.asList("Gluten", "Lactosa"),
                 "Clásico tiramisú italiano", 0);
 
+        // Crear la lista de productos iniciales
+        List<Producto> productosMenu = new ArrayList<>(Arrays.asList(
+                entrada, bebida, plato, postre, entrada1, bebida1, plato1, postre1));
 
-        menu.agregarProducto(entrada);
-        menu.agregarProducto(bebida);
-        menu.agregarProducto(plato);
-        menu.agregarProducto(postre);
-        menu.agregarProducto(entrada1);
-        menu.agregarProducto(bebida1);
-        menu.agregarProducto(plato1);
-        menu.agregarProducto(postre1);
+        // Inicializar el singleton
+        MenuDigital.inicializar(productosMenu);
 
-        List<Producto> productos = new ArrayList<>(Arrays.asList(entrada, bebida));
+        // Obtener la instancia en cualquier parte del programa
+        MenuDigital menu = MenuDigital.getInstancia();
 
         System.out.println(menu.toString());
 
@@ -90,7 +74,7 @@ public class Main {
 
 
         //Crear pedido programado
-        Pedido pedido = controlerPedido.crearPedidoDesdeApp(clienteConCupon, mesero, productos, LocalTime.now().plusMinutes(10));
+        Pedido pedido = controlerPedido.crearPedidoDesdeApp(clienteConCupon, mesero, productosMenu, LocalTime.now().plusMinutes(10));
 
         if (pedido instanceof PedidoApp pedidoApp) {
             pedidoApp.setDelivery(true); // o false, según corresponda

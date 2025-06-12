@@ -1,12 +1,28 @@
-
 import java.util.*;
 
 public class MenuDigital {
 
+    private static MenuDigital instancia;
+
     private List<Producto> productos;
 
-    public MenuDigital() {
-        this.productos = new ArrayList<Producto>();
+    private MenuDigital(List<Producto> productosIniciales) {
+        this.productos = new ArrayList<>(productosIniciales);
+    }
+
+    public static void inicializar(List<Producto> productosIniciales) {
+        if (instancia == null) {
+            instancia = new MenuDigital(productosIniciales);
+        } else {
+            throw new IllegalStateException("El menú ya fue inicializado.");
+        }
+    }
+
+    public static MenuDigital getInstancia() {
+        if (instancia == null) {
+            throw new IllegalStateException("El menú no fue inicializado todavía.");
+        }
+        return instancia;
     }
 
     public void agregarProducto(Producto producto) {
@@ -14,11 +30,7 @@ public class MenuDigital {
     }
 
     public void eliminarProducto(Producto producto) {
-        for (int i = 0; i < productos.size(); i++) {
-            if (productos.get(i).equals(producto)) {
-                productos.remove(i);
-            }
-        }
+        productos.remove(producto);
     }
 
     public List<String> obtenerTodosLosProductos() {
@@ -28,7 +40,6 @@ public class MenuDigital {
         }
         return resultado;
     }
-
 
     public List<Producto> obtenerPorCategoria(Class<?> tipo) {
         List<Producto> resultado = new ArrayList<>();
@@ -57,5 +68,4 @@ public class MenuDigital {
         sb.append("-----------------------------");
         return sb.toString();
     }
-
 }
